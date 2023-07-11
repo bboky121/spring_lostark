@@ -49,7 +49,7 @@ public enum ClassType {
 
     /* 스페셜리스트 */
     SPECIAL_LIST("스페셜리스트", "special_list.png"),
-    Artist("도화가", "yinyangshi.png"),
+    ARTIST("도화가", "yinyangshi.png"),
     AEROMANCER("기상술사", "weather_artist.png");
 
     private final String className;
