@@ -1,0 +1,92 @@
+<html xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>모험가 검색</title>
+</head>
+<body class="body">
+    <form id="action-form" method="get" action="/characters/siblings">
+        <div class="input-wapper">
+            <input type="text" name="name" id="characterName" th:value="${name}" autocomplete="off">
+        </div>
+
+        검색결과: <span th:text="${title}"/>
+        <section id="characterContainer" th:each="entry : ${siblings}" >
+            <div class="server-name" th:text="${entry.key}"></div>
+            <div class="test">
+                <article class="grid" th:each=" character : ${entry.value} ">
+                    <p th:text="${character.CharacterName}"/>
+                    <p th:text="${character.CharacterLevel}"/>
+                    <p th:text="${character.CharacterClassName}"/>
+                    <p th:text="${character.ItemMaxLevel}"/>
+                </article>
+            </div>
+        </section>
+    </form>
+</body>
+
+<script type="text/javascript">
+window.onload= function () {
+    const getCharactersInfo = async function (characterName) {
+        const url = "/characters/siblings?name="+ characterName;
+        const response = await fetch(url);
+        const siblings = await response.text();
+        if (response.ok) {
+            document.getElementById("characterContainer").outerHTML = siblings;
+        } else {
+            console.error("에러!!");
+            console.error(response.error());
+        }
+    };
+
+    const keydown = function (e) {
+        if (e.keyCode === 13) {
+            e.preventDefault();
+            const el = document.getElementById("characterName");
+            const characterName = el.value;
+
+            if (characterName === "")
+                return;
+
+            document.getElementById("action-form").submit();
+<!--            getCharactersInfo(characterName);-->
+        }
+    };
+
+    document.addEventListener("keydown", keydown);
+}
+</script>
+<style>
+    .input-wapper {
+        background-color: #1c1f26;
+    }
+
+    .body {
+        background-color: #15181d;
+        color: #eee;
+    }
+
+    .server-name {
+        background-color: #333333;
+    }
+
+    .grid {
+        display: grid;
+    }
+
+    section {
+        display: grid;
+        background-color: #1c1f26;
+    }
+
+    article {
+        display: flex;
+        background-color: #15181d;
+        grid-template-columns: repeat(2, minmax(0,1fr));
+
+    }
+
+</style>
+</html>

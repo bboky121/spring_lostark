@@ -1,0 +1,39 @@
+server:
+  port: 8083
+
+lostark:
+  baseurl: https://developer-lostark.game.onstove.com/
+  token: ${API_KEY}
+
+application:
+  title: ??????
+
+#thymeleaf cache
+spring:
+  http:
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+  thymeleaf:
+    cache: false
+    prefix: classpath:/templates/
+    suffix: .html
+  resources:
+    cache:
+      cache-control:
+        max-age: 31536000
+    chain:
+      strategy:
+        content:
+          enabled: true
+  output:
+    ansi:
+      enabled: always
+
+## actuator settings
+management:
+  endpoints:
+    web:
+      exposure:
+        include: refresh, health, beans

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>[[${title}]]:: 내꼬야</title>
+</head>
+<body>
+<p>
+    여긴아니겠지
+</p>
+<table th:fragment="CharacterInfo">
+    <tr th:each=" character : ${siblings} ">
+        <td th:text="${character.ServerName}"></td>
+        <td><span th:text="${character.CharacterName}"></span> </td>
+        <td><span th:text="${character.CharacterLevel}"></span> </td>
+        <td><span th:text="${character.CharacterClassName}"></span> </td>
+        <td><span th:text="${character.ItemMaxLevel}"></span> </td>
+    </tr>
+</table>
+
+</body>
+</html>
