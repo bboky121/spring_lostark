@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 @ConfigurationProperties(prefix = "lostark")
 @Data
 public class LostarkProperties {
-    private String baseurl;
+    private String baseUrl;
+    private String cdnUrl;
     private String token;
 }

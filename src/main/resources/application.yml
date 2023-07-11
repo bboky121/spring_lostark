@@ -2,7 +2,8 @@ server:
   port: 8083
 
 lostark:
-  baseurl: https://developer-lostark.game.onstove.com/
+  baseUrl: https://developer-lostark.game.onstove.com/
+  cdnUrl: https://cdn-lostark.game.onstove.com/2018/obt/assets/images/common/thumb/
   token: ${API_KEY}
 
 application:

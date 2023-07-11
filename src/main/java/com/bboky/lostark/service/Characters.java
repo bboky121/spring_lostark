@@ -1,5 +1,6 @@
 package com.bboky.lostark.service;
 
+import com.bboky.lostark.config.LostarkProperties;
 import com.bboky.lostark.enums.ClassType;
 import com.bboky.lostark.model.CharactersDTO;
 import com.bboky.lostark.service.api.LostArkAPI;
@@ -15,6 +16,9 @@ public class Characters {
     @Autowired
     private LostArkAPI lostArkAPI;
 
+    @Autowired
+    private LostarkProperties lostarkProperties;
+
     public HashMap<String, List<CharactersDTO>> getCharacters(String characterName) {
         List<CharactersDTO> characters = lostArkAPI.getCharacter(characterName);
         return sortByLevel(sortByServer(characters));
@@ -28,7 +32,8 @@ public class Characters {
             if (result.containsKey(characterInfo.getServerName())) {
                 serverCharacters = result.get(characterInfo.getServerName());
             }
-            String imagePath = ClassType.findByClassName(characterInfo.getCharacterClassName()).getImageName();
+            String imagePath = lostarkProperties.getCdnUrl() +
+                ClassType.findByClassName(characterInfo.getCharacterClassName()).getImageName();
             characterInfo.setImage(imagePath);
 
             serverCharacters.add(characterInfo);
