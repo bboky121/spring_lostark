@@ -67,7 +67,7 @@ public enum ClassType {
     }
 
     public String getImageName() {
-        return "https://cdn-lostark.game.onstove.com/2018/obt/assets/images/common/thumb/" + imageName;
+        return this.imageName;
     }
 
 }

@@ -6,10 +6,8 @@ import com.bboky.lostark.model.CharactersDTO;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.client.RestTemplate;
 
@@ -27,7 +25,7 @@ public class LostArkAPI {
     }
 
     public List<CharactersDTO> getCharacter(String characterName) {
-        String uri = lostarkProperties.getBaseurl() + String.format("/characters/%s/siblings", characterName);
+        String uri = lostarkProperties.getBaseUrl() + String.format("/characters/%s/siblings", characterName);
         // Api call
         RestTemplate restTemplate = new RestTemplate();
         // header 설정을 위해 HttpHeader 클래스를 생성한 후 HttpEntity 객체에 넣어줍니다.
